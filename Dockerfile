@@ -78,9 +78,11 @@ RUN source /venv/bin/activate && \
     pip3 install wheel && \
     pip3 install -r requirements.txt && \
     python3 install.py && \
-    chmod +x /workspace/Rerender_A_Video/deps/ebsynth/bin/ebsynth && \
     pip3 cache purge && \
     deactivate
+
+# Make ebsynth executable
+RUN chmod +x /Rerender_A_Video/deps/ebsynth/bin/ebsynth
 
 # Copy the Stable Diffusion Model config
 COPY sd_model_cfg.py .
