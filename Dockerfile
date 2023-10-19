@@ -85,6 +85,11 @@ RUN source /venv/bin/activate && \
 # Copy the Stable Diffusion Model config
 COPY sd_model_cfg.py .
 
+# Fix the gradio server_name
+# TODO: Should be able to remove this once this issue is resolved:
+# https://github.com/williamyang1991/Rerender_A_Video/issues/98
+RUN sed -i "s/'localhost'/'127.0.0.1'/" webUI.py
+
 # Download revAnimated model
 RUN wget -O models/revAnimated_v122EOL.safetensors https://civitai.com/api/download/models/46846
 
