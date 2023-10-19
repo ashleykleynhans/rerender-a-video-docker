@@ -1,4 +1,4 @@
-# Docker image for Rerender A Video - Official PyTorch Implementation
+# Docker image for Rerender A Video: Zero-Shot Text-Guided Video-to-Video Translation
 
 ## Installs
 
@@ -9,6 +9,13 @@
   https://github.com/williamyang1991/Rerender_A_Video)
 * Torch 2.0.1
 * xformers 0.0.22
+* ebsynth
+* gmflow_sintel-0c07dcb3.pth
+* control_sd15_canny.pth
+* control_sd15_hed.pth
+* vae-ft-mse-840000-ema-pruned.ckpt
+* revAnimated_v122EOL.safetensors
+* realisticVisionV51_v51VAE.safetensors
 
 ## Available on RunPod
 
