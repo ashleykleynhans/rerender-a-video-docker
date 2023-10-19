@@ -78,7 +78,6 @@ RUN source /venv/bin/activate && \
     pip3 install wheel && \
     pip3 install -r requirements.txt && \
     python3 install.py && \
-    pip3 cache purge && \
     deactivate
 
 # Make ebsynth executable
