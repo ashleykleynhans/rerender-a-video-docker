@@ -109,6 +109,9 @@ RUN wget https://github.com/runpod/runpodctl/releases/download/v1.10.0/runpodctl
     chmod a+x runpodctl && \
     mv runpodctl /usr/local/bin
 
+# Remove existing SSH host keys
+RUN rm -f /etc/ssh/ssh_host_*
+
 # NGINX Proxy
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/502.html /usr/share/nginx/html/502.html
