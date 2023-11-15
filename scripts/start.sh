@@ -70,6 +70,7 @@ start_jupyter() {
           --port=8888 \
           --ip=* \
           --FileContentsManager.delete_to_trash=False \
+          --ContentsManager.allow_hidden=True \
           --ServerApp.terminado_settings='{"shell_command":["/bin/bash"]}' \
           --ServerApp.token=${JUPYTER_PASSWORD} \
           --ServerApp.allow_origin=* \
