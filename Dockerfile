@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
-ARG RERENDER_A_VIDEO_COMMIT=a1620540b417954ba40e44037dcdee86aa9b81f6
+ARG RERENDER_A_VIDEO_COMMIT=eefa7d59fd454045db4ba3998a799f20ccc41e05
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
