@@ -40,7 +40,7 @@ docker run -d \
   -p 3000:3001 \
   -p 8888:8888 \
   -e JUPYTER_PASSWORD=Jup1t3R! \
-  ashleykza/rerender-a-video:1.0.0
+  ashleykza/rerender-a-video:latest
 ```
 
 You can obviously substitute the image name and tag with your own.
