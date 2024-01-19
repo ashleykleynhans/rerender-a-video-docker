@@ -16,6 +16,9 @@
 * vae-ft-mse-840000-ema-pruned.ckpt
 * revAnimated_v122EOL.safetensors
 * realisticVisionV51_v51VAE.safetensors
+* [runpodctl](https://github.com/runpod/runpodctl)
+* [croc](https://github.com/schollz/croc)
+* [rclone](https://rclone.org/)
 
 ## Available on RunPod
 
