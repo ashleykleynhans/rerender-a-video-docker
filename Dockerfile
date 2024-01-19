@@ -1,7 +1,9 @@
 # Stage 1: Base
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
-ARG RERENDER_A_VIDEO_COMMIT=eefa7d59fd454045db4ba3998a799f20ccc41e05
+ARG RERENDER_A_VIDEO_COMMIT=d32b1d6b6c1305ddd06e66868c5dcf4fb7aa048c
+ARG TORCH_VERSION=2.0.1
+ARG XFORMERS_VERSION=0.0.22
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -73,8 +75,8 @@ RUN git clone https://github.com/williamyang1991/Rerender_A_Video.git --recursiv
 # Install the dependencies for Rerender a Video
 WORKDIR /Rerender_A_Video
 RUN source /venv/bin/activate && \
-    pip3 install --no-cache-dir torch==2.0.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.22 && \
+    pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
+    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} && \
     pip3 install wheel && \
     pip3 install -r requirements.txt && \
     python3 install.py && \
@@ -104,10 +106,20 @@ RUN pip3 install -U --no-cache-dir jupyterlab \
         ipywidgets \
         gdown
 
+# Install rclone
+RUN curl https://rclone.org/install.sh | bash
+
 # Install runpodctl
 RUN wget https://github.com/runpod/runpodctl/releases/download/v1.10.0/runpodctl-linux-amd -O runpodctl && \
     chmod a+x runpodctl && \
     mv runpodctl /usr/local/bin
+
+# Install croc
+RUN curl https://getcroc.schollz.com | bash
+
+# Install speedtest CLI
+RUN curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash && \
+    apt install speedtest
 
 # Remove existing SSH host keys
 RUN rm -f /etc/ssh/ssh_host_*
@@ -121,5 +133,6 @@ WORKDIR /
 COPY --chmod=755 scripts/* ./
 
 # Start the container
+ENV TEMPLATE_VERSION=1.0.2
 SHELL ["/bin/bash", "--login", "-c"]
-CMD [ "/start.sh" ]
+ENTRYPOINT [ "/start.sh" ]
