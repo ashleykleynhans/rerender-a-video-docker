@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-set -e  # Exit the script if any statement returns a non-true return value
-
 # ---------------------------------------------------------------------------- #
 #                          Function Definitions                                #
 # ---------------------------------------------------------------------------- #
@@ -58,7 +56,7 @@ export_env_vars() {
 start_jupyter() {
     if [[ $JUPYTER_PASSWORD ]]; then
         echo "Starting Jupyter Lab..."
-        mkdir -p /workspace && \
+        mkdir -p /workspace/logs && \
         cd / && \
         nohup jupyter lab --allow-root \
           --no-browser \
@@ -101,7 +99,7 @@ configure_filezilla() {
           echo "PermitRootLogin yes" >> ${ssh_config}
 
         # Restart the SSH service
-        service ssh restart || systemctl restart sshd
+        service ssh restart
 
         # Create FileZilla XML configuration for SFTP
         filezilla_config_file="/workspace/filezilla_sftp_config.xml"
@@ -140,10 +138,10 @@ EOF
 
 echo "Container Started, configuration in progress..."
 start_nginx
-execute_script "/pre_start.sh" "Running pre-start script..."
 setup_ssh
-configure_filezilla
 start_jupyter
+execute_script "/pre_start.sh" "Running pre-start script..."
+configure_filezilla
 export_env_vars
 execute_script "/post_start.sh" "Running post-start script..."
 echo "Container is READY!"

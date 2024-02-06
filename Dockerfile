@@ -46,6 +46,8 @@ RUN apt update && \
         zip \
         unzip \
         htop \
+        screen \
+        tmux \
         pkg-config \
         libcairo2-dev \
         libgoogle-perftools4 \
@@ -133,6 +135,6 @@ WORKDIR /
 COPY --chmod=755 scripts/* ./
 
 # Start the container
-ENV TEMPLATE_VERSION=1.0.2
+ENV TEMPLATE_VERSION=1.0.3
 SHELL ["/bin/bash", "--login", "-c"]
-ENTRYPOINT [ "/start.sh" ]
+CMD [ "/start.sh" ]
