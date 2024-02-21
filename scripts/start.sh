@@ -56,7 +56,7 @@ export_env_vars() {
 start_jupyter() {
     if [[ $JUPYTER_PASSWORD ]]; then
         echo "Starting Jupyter Lab..."
-        mkdir -p /workspace/logs && \
+        mkdir -p /workspace/logs
         cd / && \
         nohup jupyter lab --allow-root \
           --no-browser \
@@ -70,6 +70,12 @@ start_jupyter() {
           --ServerApp.preferred_dir=/workspace &> /workspace/logs/jupyter.log &
         echo "Jupyter Lab started"
     fi
+}
+
+start_runpod_uploader() {
+    echo "Starting RunPod Uploader..."
+    nohup /usr/local/bin/runpod-uploader &> /workspace/logs/runpod-uploader.log &
+    echo "RunPod Uploader started"
 }
 
 configure_filezilla() {
@@ -140,6 +146,7 @@ echo "Container Started, configuration in progress..."
 start_nginx
 setup_ssh
 start_jupyter
+start_runpod_uploader
 execute_script "/pre_start.sh" "Running pre-start script..."
 configure_filezilla
 export_env_vars
