@@ -137,7 +137,10 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/502.html /usr/share/nginx/html/502.html
 
 # Set template version
-ENV TEMPLATE_VERSION=1.0.4
+ENV TEMPLATE_VERSION=1.0.5
+
+# Set the venv path
+ENV VENV_PATH="/workspace/venvs/rerender_a_video"
 
 # Copy the scripts
 WORKDIR /

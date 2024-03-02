@@ -46,13 +46,13 @@ docker run -d \
   -p 3000:3001 \
   -p 8888:8888 \
   -p 2999:2999 \
-  -e JUPYTER_PASSWORD=Jup1t3R! \
+  -e VENV_PATH="/workspace/venvs/rerender_a_video" \
   ashleykza/rerender-a-video:latest
 ```
 
 You can obviously substitute the image name and tag with your own.
 
-### Ports
+## Ports
 
 | Connect Port | Internal Port | Description          |
 |--------------|---------------|----------------------|
@@ -60,12 +60,12 @@ You can obviously substitute the image name and tag with your own.
 | 8888         | 8888          | Jupyter Lab          |
 | 2999         | 2999          | RunPod File Uploader |
 
-### Environment Variables
+## Environment Variables
 
-| Variable           | Description                                           | Default   |
-|--------------------|-------------------------------------------------------|-----------|
-| JUPYTER_PASSWORD   | Password for Jupyter Lab                              | Jup1t3R!  |
-| DISABLE_AUTOLAUNCH | Disable Rerender a Video from launching automatically | (not set) |
+| Variable           | Description                                           | Default                           |
+|--------------------|-------------------------------------------------------|-----------------------------------|
+| VENV_PATH          | Set the path for the Python venv for the app          | /workspace/venvs/rerender_a_video |
+| DISABLE_AUTOLAUNCH | Disable Rerender a Video from launching automatically | (not set)                         |
 
 ## Logs
 
@@ -74,12 +74,12 @@ killing the service to view the logs.
 
 | Application      | Log file                              |
 |------------------|---------------------------------------|
-| Rerender a Video | /workspace/logs/Rerender_A_Video.log  |
+| Rerender a Video | /workspace/logs/rerender_a_video.log  |
 
 For example:
 
 ```bash
-tail -f /workspace/logs/Rerender_A_Video.log
+tail -f /workspace/logs/rerender_a_video.log
 ```
 
 ## Community and Contributing
