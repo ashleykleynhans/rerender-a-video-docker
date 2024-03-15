@@ -81,10 +81,11 @@ You can obviously substitute the image name and tag with your own.
 
 ## Environment Variables
 
-| Variable           | Description                                           | Default                           |
-|--------------------|-------------------------------------------------------|-----------------------------------|
-| VENV_PATH          | Set the path for the Python venv for the app          | /workspace/venvs/rerender_a_video |
-| DISABLE_AUTOLAUNCH | Disable Rerender a Video from launching automatically | (not set)                         |
+| Variable             | Description                                           | Default                           |
+|----------------------|-------------------------------------------------------|-----------------------------------|
+| VENV_PATH            | Set the path for the Python venv for the app          | /workspace/venvs/rerender_a_video |
+| JUPYTER_LAB_PASSWORD | Set a password for Jupyter lab                        | not set - no password             |
+| DISABLE_AUTOLAUNCH   | Disable Rerender a Video from launching automatically | (not set)                         |
 
 ## Logs
 

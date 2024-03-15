@@ -63,6 +63,14 @@ export_env_vars() {
 }
 
 start_jupyter() {
+    # Default to not using a password
+    JUPYTER_PASSWORD=""
+
+    # Allow a password to be set by providing the JUPYTER_PASSWORD environment variable
+    if [[ ${JUPYTER_LAB_PASSWORD} ]]; then
+        JUPYTER_PASSWORD=${JUPYTER_LAB_PASSWORD}
+    fi
+
     echo "Starting Jupyter Lab..."
     mkdir -p /workspace/logs
     cd / && \
@@ -73,7 +81,7 @@ start_jupyter() {
       --FileContentsManager.delete_to_trash=False \
       --ContentsManager.allow_hidden=True \
       --ServerApp.terminado_settings='{"shell_command":["/bin/bash"]}' \
-      --ServerApp.token="" \
+      --ServerApp.token=${JUPYTER_PASSWORD} \
       --ServerApp.allow_origin=* \
       --ServerApp.preferred_dir=/workspace &> /workspace/logs/jupyter.log &
     echo "Jupyter Lab started"
